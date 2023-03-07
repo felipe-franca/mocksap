@@ -1,18 +1,9 @@
-import { Application, Router } from 'express';
+import { Router } from 'express';
 import TicketController from '../controllers/TicketController';
 
-class TicketRouter {
-  router: Router;
+const router = Router();
 
-  constructor() {
-    this.router = Router();
-  }
+router.route('/analyse').post(TicketController.store);
 
-  analyseTicket(app: Application): void {
-    app
-      .route('/tickets/analyse')
-      .post(TicketController.store);
-  }
-}
+export default router;
 
-export default new TicketRouter();

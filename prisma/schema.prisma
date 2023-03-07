@@ -1,0 +1,29 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider  = "prisma-client-js"
+  casing    = "snake-case"
+  pluralize = true
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Ticket {
+  id                    Int       @id @default(autoincrement())
+  subject               String    @db.VarChar(255)
+  startDate             DateTime  @default(now())
+  endDate               DateTime?
+  openedAt              DateTime  @default(now())
+  closedAt              DateTime?
+  description           String    @db.VarChar(255)
+  officeBillingDocument String    @db.VarChar(14)
+  protocol              String    @db.VarChar(14)
+  status                String    @db.VarChar(18)
+  ventureCode           Int
+
+  @@map("tickets")
+}

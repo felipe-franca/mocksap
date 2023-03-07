@@ -11,7 +11,7 @@ interface ITicket {
   ventureCode: number
 }
 
-class Ticket {
+class Ticket implements ITicket {
   subject: string;
   startDate: Date;
   endDate: Date;

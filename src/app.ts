@@ -1,4 +1,4 @@
-import express, { Application } from 'express'
+import express, { Application,  Router } from 'express'
 import TicketRouter from './routes/TicketRouter';
 
 class AppControlle {
@@ -6,11 +6,16 @@ class AppControlle {
 
   constructor() {
     this.app = express();
-    this.routes();
+    this.config(this.app);
+    this.routes(this.app);
   }
 
-  routes(): void {
-    this.app.use('/ticket', () => TicketRouter.analyseTicket(this.app));
+  config(app: Application): void {
+    app.use(express.json());
+  }
+
+  routes(app: Application): void {
+    app.use('/ticket', TicketRouter);
   }
 
 }
